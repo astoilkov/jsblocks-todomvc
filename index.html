@@ -3,71 +3,51 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Template • TodoMVC</title>
+		<title>jsblocks • TodoMVC</title>
 		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
-		<!-- CSS overrides - remove if you don't need it -->
-		<link rel="stylesheet" href="css/app.css">
 	</head>
 	<body>
-		<section class="todoapp">
+		<section data-query="view(Todos)" class="todoapp">
 			<header class="header">
 				<h1>todos</h1>
-				<input class="new-todo" placeholder="What needs to be done?" autofocus>
+				<input data-query="val(newTodo.title).keydown(addTodo)" class="new-todo" placeholder="What needs to be done?" autofocus>
 			</header>
-			<!-- This section should be hidden by default and shown when there are todos -->
-			<section class="main">
-				<input class="toggle-all" type="checkbox">
+			<section data-query="visible(todos().length > 0)" class="main">
+				<input data-query="checked(todos.remaining() == 0).click(todos.toggleAll)" class="toggle-all" type="checkbox">
 				<label for="toggle-all">Mark all as complete</label>
-				<ul class="todo-list">
-					<!-- These are here just to show the structure of the list items -->
-					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-					<li class="completed">
+				<ul data-query="each(todos.view)" class="todo-list">
+					<li data-query="setClass('completed', completed).setClass('editing', editing).dblclick(edit)">
 						<div class="view">
-							<input class="toggle" type="checkbox" checked>
-							<label>Taste JavaScript</label>
-							<button class="destroy"></button>
+							<input data-query="checked(completed).click(toggleComplete)" class="toggle" type="checkbox">
+							<label>{{title}}</label>
+							<button data-query="click(destroy)" class="destroy"></button>
 						</div>
-						<input class="edit" value="Create a TodoMVC template">
-					</li>
-					<li>
-						<div class="view">
-							<input class="toggle" type="checkbox">
-							<label>Buy a unicorn</label>
-							<button class="destroy"></button>
-						</div>
-						<input class="edit" value="Rule the web">
+						<input data-query="val(title).keydown(handleAction).blur(closeEdit).focused(editing)" class="edit" />
 					</li>
 				</ul>
 			</section>
-			<!-- This footer should hidden by default and shown when there are todos -->
-			<footer class="footer">
-				<!-- This should be `0 items left` by default -->
-				<span class="todo-count"><strong>0</strong> item left</span>
-				<!-- Remove this if you don't implement routing -->
+			<footer data-query="visible(todos().length > 0)" class="footer">
+				<span class="todo-count"><strong>{{todos.remaining}}</strong> item left</span>
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">All</a>
+						<a data-query="setClass('selected', filter() == 'all')" href="#/">All</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a data-query="setClass('selected', filter() == 'active')" href="#/active">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a data-query="setClass('selected', filter() == 'completed')" href="#/completed">Completed</a>
 					</li>
 				</ul>
-				<!-- Hidden if no completed items are left ↓ -->
-				<button class="clear-completed"></button>
+				<button data-query="visible(todos().length != todos.remaining()).click(todos.clearCompleted)" class="clear-completed"></button>
 			</footer>
 		</section>
 		<footer class="info">
 			<p>Double-click to edit a todo</p>
-			<!-- Remove the below line ↓ -->
-			<p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-			<!-- Change this out with your name and url ↓ -->
-			<p>Created by <a href="http://todomvc.com">you</a></p>
+			<p>Created by <a href="https://github.com/astoilkov">Antonio Stoilkov</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
-		<!-- Scripts here. Don't remove ↓ -->
+		<script src="js/blocks.js"></script>
 		<script src="node_modules/todomvc-common/base.js"></script>
 		<script src="js/app.js"></script>
 	</body>
