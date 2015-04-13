@@ -31,12 +31,16 @@
 		},
 
 		closeEdit: function () {
-			this.editing(false);
+			if (this.title()) {
+				this.editing(false);
+			} else {
+				this.destroy();
+			}
 		},
 
 		handleAction: function (e) {
 			if (e.which == ENTER_KEY) {
-				this.editing(false);
+				this.closeEdit();
 			} else if (e.which == ESCAPE_KEY) {
 				this.title(this.lastValue);
 				this.editing(false);
@@ -97,9 +101,11 @@
 
 		todos: Todos().extend('filter', function (value) {
 			var mode = this.filter();
-			return mode == 'active' ? !value.completed() :
-				mode == 'completed' ? value.completed() :
-				true;
+			var completed = value.completed();
+
+			return mode == 'active' ? !completed :
+				mode == 'completed' ? completed :
+					true;
 		}),
 
 		routed: function (params) {
@@ -116,5 +122,4 @@
 			}
 		}
 	});
-
 })();

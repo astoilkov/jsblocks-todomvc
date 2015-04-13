@@ -39,7 +39,9 @@
 						<a data-query="setClass('selected', filter() == 'completed')" href="#/completed">Completed</a>
 					</li>
 				</ul>
-				<button data-query="visible(todos().length != todos.remaining()).click(todos.clearCompleted)" class="clear-completed"></button>
+				<button data-query="visible(todos().length != todos.remaining()).click(todos.clearCompleted)" class="clear-completed">
+					Clear completed
+				</button>
 			</footer>
 		</section>
 		<footer class="info">
@@ -47,7 +49,7 @@
 			<p>Created by <a href="https://github.com/astoilkov">Antonio Stoilkov</a></p>
 			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 		</footer>
-		<script src="js/blocks.js"></script>
+		<script src="node_modules/blocks/blocks.js"></script>
 		<script src="node_modules/todomvc-common/base.js"></script>
 		<script src="js/app.js"></script>
 	</body>
