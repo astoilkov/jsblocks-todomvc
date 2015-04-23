@@ -2,6 +2,14 @@
 
 From simple user interfaces to complex single-page applications using faster, server-side rendered and easy to learn framework
 
+## Start the project
+
+Run the command below and then navigate to the project folder and open index.html file
+
+```
+npm install
+```
+
 ## Resources
 
 - [Website](http://104.131.138.38)
