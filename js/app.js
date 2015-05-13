@@ -71,7 +71,7 @@
 			});
 		},
 
-		save: function () {
+		save: blocks.throttle(1000, function () {
 			var result = [];
 
 			blocks.each(this(), function (model) {
@@ -81,7 +81,7 @@
 			localStorage.setItem('todos-jsblocks', JSON.stringify(result));
 
 			this.updateRemaining();
-		},
+		}),
 
 		updateRemaining: function () {
 			this.remaining(this.reduce(function (memo, todo) {
