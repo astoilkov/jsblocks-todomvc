@@ -53,7 +53,7 @@
 
 		init: function () {
 			this
-				.reset(JSON.parse(localStorage.getItem('todos-jsblocks')))
+				.reset(JSON.parse(localStorage.getItem('todos-jsblocks')) || [])
 				.on('add remove', this.save)
 				.updateRemaining();
 		},
