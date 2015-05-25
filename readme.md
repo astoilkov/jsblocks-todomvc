@@ -2,7 +2,7 @@
 
 From simple user interfaces to complex single-page applications using faster, server-side rendered and easy to learn framework
 
-## Help the TodoMVC implementation
+## Help jsblocks TodoMVC
 
 Help jsblocks TodoMVC be a part of the app by commenting in the [pull request](https://github.com/tastejs/todomvc/pull/1297).
 
